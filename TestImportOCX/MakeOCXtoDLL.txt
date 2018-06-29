@@ -1,0 +1,4 @@
+copy "C:\Windows\SysWOW64\Heller Comm.ocx" C:\Tmp\*.*
+copy "C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.7 Tools\AxImp.exe" C:\Tmp\*.*
+cd C:\Tmp
+AxImp "C:\Windows\SysWOW64\Heller Comm.ocx"
