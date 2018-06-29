@@ -19,9 +19,9 @@ namespace FormatTest
             foreach (ushort memData in HoldingRegisterList)
             {
                 retLog += string.Format("{0,5:X4},", memData);
-            } 
-             
-            Console.WriteLine(retLog, "   ");
+            }
+
+            Console.WriteLine(retLog);
 
 
             string testStr = "abcd";
