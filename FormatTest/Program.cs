@@ -21,7 +21,7 @@ namespace FormatTest
                 retLog += string.Format("{0,5:X4},", memData);
             }
 
-            Console.WriteLine(retLog);
+            Console.WriteLine(retLog, "A");
 
 
             string testStr = "abcd";
