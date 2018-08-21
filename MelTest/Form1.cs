@@ -210,7 +210,7 @@ namespace MelTest
             //mel.setde
 
             ActSupportMsgLib.ActMLSupportMsgClass kk = new ActSupportMsgLib.ActMLSupportMsgClass();
-            kk.GetErrorMessage()
+            //kk.GetErrorMessage()
         }
     }
 }

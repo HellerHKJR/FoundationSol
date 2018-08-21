@@ -9,7 +9,7 @@ namespace TestStatic
     {
         static void Main(string[] args)
         {
-            TTTT.asd
+            //TTTT.asd
         }
     }
 

@@ -24,6 +24,10 @@ namespace FormatTest
             Console.WriteLine(retLog, "A");
 
 
+
+
+
+
             string testStr = "abcd";
             Console.WriteLine("Result: " + testStr.IndexOfAny(new char[] { 'e', 'd' }));
 
