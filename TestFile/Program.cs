@@ -30,9 +30,10 @@ namespace TestFile
                     if (rtn[i] != rtn3[i]) Console.WriteLine(i + "BAD");
                 }
             }
-            
 
 
+            FileInfo fi = new FileInfo(@"C:\SSSS.txt");
+            fi.Delete();
 
             Console.ReadLine();
         }

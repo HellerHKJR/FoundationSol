@@ -37,6 +37,12 @@ namespace TestConsole
             //    Console.Write(i + "\t");
             //}
 
+            string testRecipeFullPathwithoutExt = @"PP-Select_Test_Folder\Recipe Files\SERVER_RECIPE";
+            //string testRecipeFullPathwithoutExt = @"K:\MS Lee\PP-Select_Test_Folder\Recipe Files\SERVER_RECIPE";
+            int pos = testRecipeFullPathwithoutExt.LastIndexOf('\\');
+            string ret = testRecipeFullPathwithoutExt.Substring(0, pos);
+            DirectoryInfo tmpDI = new DirectoryInfo(ret);
+
             Hashtable ht = new Hashtable();
             ht.Add(1, "1");
             ht.Add(100, "100");

@@ -5,6 +5,11 @@ using System.Text;
 
 namespace ConsoleApp1
 {
+    class SomeThing
+    {
+        public string someVal = "SSS";
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -14,6 +19,13 @@ namespace ConsoleApp1
                 Console.WriteLine("AAAAA {0}", i);
                 ProcessSSS();
             }
+
+            SomeThing s = null;
+            Console.WriteLine("SSSSSSSSSSS");
+            Console.WriteLine("SSS".Equals(s?.someVal) ? "!!!!!" : "?????" );
+            Console.WriteLine("SSSSSSSSSSS");
+
+            int kk = Convert.ToInt32("");
 
 
             Console.ReadLine();
