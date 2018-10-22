@@ -22,7 +22,7 @@ namespace DataStructureTest
         {
             Stopwatch st = Stopwatch.StartNew();
 
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 1; i++)
             {
                 st.Restart();
                 MessageData md = new MessageData();
@@ -71,16 +71,17 @@ namespace DataStructureTest
                 }
 
                 XmlTextWriter writer = new XmlTextWriter(Console.Out);
-                writer.Formatting = Formatting.Indented;
-                //XmlDocument xmldoc = md.GetLog(writer);
-                //Console.WriteLine();
-                //Console.WriteLine("Get Byte to XML------");
-                //Console.WriteLine(md.GetData());
+                writer.Formatting = Formatting.None;
+                XmlDocument xmldoc = md.GetLog(writer);
+                Console.WriteLine();
+                Console.WriteLine(xmldoc.InnerXml);
+                Console.WriteLine("Get Byte to XML------");
+                Console.WriteLine(md.GetData());
 
                 MessageData mdRecv = new MessageData();
                 mdRecv.SetData(md.GetData());
-                //mdRecv.GetLog(writer);
-                //Console.WriteLine();
+                mdRecv.GetLog(writer);
+                Console.WriteLine();
 
                 st.Stop();
                 Console.WriteLine("Time Elapsed {0:000}:{1:000}", i, st.ElapsedMilliseconds);

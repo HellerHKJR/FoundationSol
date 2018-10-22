@@ -107,6 +107,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestClassClone", "TestClass
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqByteSearch", "LinqByteSearch\LinqByteSearch.csproj", "{A98729DD-C0FC-4132-979B-B9048B07BB96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructureGPI", "DataStructureGPI\DataStructureGPI.csproj", "{988AA538-4041-45B4-9AAC-68A0B22DEE18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -321,6 +323,10 @@ Global
 		{A98729DD-C0FC-4132-979B-B9048B07BB96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A98729DD-C0FC-4132-979B-B9048B07BB96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A98729DD-C0FC-4132-979B-B9048B07BB96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{988AA538-4041-45B4-9AAC-68A0B22DEE18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{988AA538-4041-45B4-9AAC-68A0B22DEE18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{988AA538-4041-45B4-9AAC-68A0B22DEE18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{988AA538-4041-45B4-9AAC-68A0B22DEE18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

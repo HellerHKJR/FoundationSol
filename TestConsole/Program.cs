@@ -37,6 +37,27 @@ namespace TestConsole
             //    Console.Write(i + "\t");
             //}
 
+            try
+            {
+                long tmp1Long = 1234;
+                string tmp1String = "123.123";
+                long tmp1RetLong;
+                object tmp1RetObj;
+
+                if (long.TryParse(tmp1String, out tmp1RetLong)) tmp1RetObj = tmp1RetLong;
+                else tmp1RetObj = 0;
+
+                double xxx = 999.1234;
+
+                short sxxx = (short)xxx;
+            }
+            catch (Exception exx)
+            {
+
+            }
+
+
+
             string testRecipeFullPathwithoutExt = @"PP-Select_Test_Folder\Recipe Files\SERVER_RECIPE";
             //string testRecipeFullPathwithoutExt = @"K:\MS Lee\PP-Select_Test_Folder\Recipe Files\SERVER_RECIPE";
             int pos = testRecipeFullPathwithoutExt.LastIndexOf('\\');
