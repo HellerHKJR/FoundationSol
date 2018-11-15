@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.XPath;
 using System.Linq;
 using System.Threading;
 using System.Collections;
@@ -129,6 +130,28 @@ namespace DataStructureGPI
             string ret = Path.GetFileNameWithoutExtension(tmp);
 
             Console.WriteLine(ret);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string tmp = "<FlowResult>ss</FlowResult>";
+            
+            XPathDocument xPath = new XPathDocument(new StringReader(tmp));
+            XPathNavigator xPN =  xPath.CreateNavigator();
+            string ret = xPN.Select("//FlowResult").Current.Value;
+
+            int kkk = 9;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            DateTime dtKeep = DateTime.Now;
+            Thread.Sleep(500);
+
+            DateTime dtNow = DateTime.Now;
+            TimeSpan s = dtNow - dtKeep;
+
+            Console.WriteLine(s.Milliseconds);
         }
     }
 

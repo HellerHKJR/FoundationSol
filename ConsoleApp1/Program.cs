@@ -14,6 +14,9 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            bool tmpR = Boolean.Parse("TRUE");
+
+
             for (int i = 0; i < 100; i++)
             {
                 Console.WriteLine("AAAAA {0}", i);

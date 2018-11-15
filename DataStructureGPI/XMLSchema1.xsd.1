@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ROOT">
+    <xs:complexType>
+      <xs:all >
+        <xs:element name="Past">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="Common" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="ResultData">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FlowResult" minOccurs="1" maxOccurs="1" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="Seihin">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="Common" minOccurs="1" maxOccurs="1"/>
+              <xs:element ref="First" minOccurs="0" maxOccurs="1"/>
+              <xs:element ref="Second" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="ProgNo" type="xs:string" minOccurs="1" maxOccurs="1"/>
+              <xs:element ref="PreheatTempList" minOccurs="1" maxOccurs="1"/>
+              <xs:element ref="HeatTempList" minOccurs="1" maxOccurs="1"/>
+              <xs:element name="CoolTemp" type="xs:string" minOccurs="1" maxOccurs="1"/>
+              <xs:element name="OxyDensity" type="xs:string" minOccurs="1" maxOccurs="1"/>
+              <xs:element name="N2Flow" type="xs:string" minOccurs="1" maxOccurs="1"/>
+              <xs:element name="ConveyorSp" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="Setsubi">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="Common" minOccurs="1" maxOccurs="1"/>
+              <xs:element ref="Occur" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="Event">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Common" minOccurs="1" maxOccurs="1"/>
+              <xs:element name="RaiseTime" type="xs:string" minOccurs="1" maxOccurs="1"/>
+              <xs:element ref="Error" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="Status" minOccurs="0" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Error">
+    <xs:complexType>
+      <xs:group ref="ErrorGroup" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:group name="ErrorGroup">
+    <xs:sequence>
+      <xs:element name="ErrorMessage" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="ErrorCode" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:group>
+  
+  <xs:element name="Occur">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="RaiseTime" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="EventMessage" type="xs:string" minOccurs="0" />
+        <xs:element ref="Error" minOccurs="0" />
+        <xs:element name="InputPart" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PartsNo" type="xs:string" minOccurs="1" maxOccurs="1"/>
+              <xs:element name="LotNo" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ManagementMessage" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Maintenance" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="MaintenanceItem" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="MaintenanceValue" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:group name="TempGroup">
+    <xs:sequence>
+      <xs:element name="St" minOccurs="1" maxOccurs="1" type="xs:string" />
+      <xs:element name="Heater" minOccurs="1" maxOccurs="1" type="xs:string" />
+      <xs:element name="Temp" minOccurs="1" maxOccurs="1" type="xs:string" />
+    </xs:sequence>
+  </xs:group>
+  
+  <xs:element name="HeatTempList">
+    <xs:complexType>
+      <xs:sequence minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="HeatTemp">
+          <xs:complexType>
+            <xs:group ref="TempGroup"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="PreheatTempList">
+    <xs:complexType>
+      <xs:sequence minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PreheatTemp">
+          <xs:complexType>
+            <xs:group ref="TempGroup"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="Common">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Pcb" minOccurs="0" maxOccurs="1" type="xs:string" />
+        <xs:element name="SeizoNo" minOccurs="0" maxOccurs="1" type="xs:string" fixed="1"/>
+        <xs:element name="MCNo" minOccurs="1" maxOccurs="1" type="xs:string" />
+        <xs:element name="MCName" minOccurs="1" maxOccurs="1" type="xs:string" />
+        <xs:element name="Operator" minOccurs="0" maxOccurs="1" type="xs:string" />
+        <xs:element name="StartTime" minOccurs="0" maxOccurs="1" type="xs:string" />
+        <xs:element name="EndTime" minOccurs="0" maxOccurs="1" type="xs:string" nillable="true"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="First">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ProductResult" minOccurs="1" maxOccurs="1" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Second">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ProductResult" minOccurs="1" maxOccurs="1" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  
+  
+  
+</xs:schema>

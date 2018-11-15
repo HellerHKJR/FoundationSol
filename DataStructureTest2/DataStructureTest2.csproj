@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{988AA538-4041-45B4-9AAC-68A0B22DEE18}</ProjectGuid>
+    <ProjectGuid>{FF2BC7CF-7217-4BD3-8AB6-D438152FC263}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>DataStructureGPI</RootNamespace>
-    <AssemblyName>DataStructureGPI</AssemblyName>
+    <RootNamespace>DataStructureTest2</RootNamespace>
+    <AssemblyName>DataStructureTest2</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -72,13 +72,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="XMLSchema1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="XMLFile1.xml" />
-    <Content Include="XMLFile2.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
