@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Body xmlns="http://tempuri.org/XMLSchema1.xsd">
+  <Past>
+    <Common>
+      <Seizo>P42T5114</Seizo>
+      <MCNo>1000</MCNo>
+      <MCName>HellerCuringOven</MCName>
+    </Common>
+  </Past>
+</Body>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Body xmlns="http://tempuri.org/XMLSchema1.xsd">
+  <Event>
+    <Common>
+      <MCNo>testNo</MCNo>
+      <MCName>testName</MCName>
+    </Common>
+    <Error>
+      <ErrorMessage>testError</ErrorMessage>
+      <ErrorCode>1234</ErrorCode>
+      <ErrorStatus>Set</ErrorStatus>
+    </Error>
+    <RaiseTime>20181116133150</RaiseTime>
+    <Status>Off</Status>
+  </Event>
+</Body>

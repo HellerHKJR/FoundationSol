@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid Studio 2018 (https://www.liquid-technologies.com)-->
+<xs:schema xmlns="http://tempuri.org/XMLSchema1.xsd"
+		   xmlns:mstns="http://tempuri.org/XMLSchema1.xsd"
+		   elementFormDefault="qualified"
+		   id="XMLSchema1"
+		   targetNamespace="http://tempuri.org/XMLSchema1.xsd"
+		   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="Body">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="Event" />
+				<xs:element ref="Past" />
+				<xs:element ref="Seihin" />
+				<xs:element ref="Setsubi" />
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Event">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Common" />
+				<xs:element name="Error"
+						    minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ErrorMessage"
+									    type="xs:string" />
+							<xs:element name="ErrorCode"
+									    type="xs:string" />
+							<xs:element name="ErrorStatus"
+									    type="xs:string" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="RaiseTime"
+						    type="xs:string" />
+				<xs:element name="Status"
+						    type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Past">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Common" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Seihin">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Common" />
+				<xs:element ref="HellerOven" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Setsubi">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Common" />
+				<xs:element ref="HellerOven" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Common">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Seizo"
+						    type="xs:string"
+						    minOccurs="0" />
+				<xs:element name="MCNo"
+						    type="xs:string" />
+				<xs:element name="MCName"
+						    type="xs:string" />
+				<xs:element name="Operator"
+						    type="xs:string"
+						    minOccurs="0" />
+				<xs:element name="StartTime"
+						    type="xs:string"
+						    minOccurs="0" />
+				<xs:element name="EndTime"
+						    type="xs:string"
+						    minOccurs="0" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HellerOven">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RecipeName"
+						    type="xs:string" />
+				<xs:element name="Oxygen"
+						    minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="O2Concentration"
+									    type="xs:int" />
+							<xs:element name="O2Alarm1"
+									    type="xs:int" />
+							<xs:element name="O2Alarm2"
+									    type="xs:int" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Nitrogen"
+						    type="xs:float"
+						    minOccurs="0" />
+				<xs:element name="HeatingZones">
+					<xs:complexType>
+						<xs:sequence minOccurs="0"
+									 maxOccurs="unbounded">
+							<xs:element name="Zone">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Number"
+												    type="xs:int" />
+										<xs:element name="Upper">
+											<xs:complexType>
+												<xs:group ref="HeatingChannelInfo" />
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Lower">
+											<xs:complexType>
+												<xs:group ref="HeatingChannelInfo" />
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CoolingZones">
+					<xs:complexType>
+						<xs:sequence minOccurs="0"
+									 maxOccurs="unbounded">
+							<xs:element name="Zone">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Number"
+												    type="xs:int" />
+										<xs:element name="Upper">
+											<xs:complexType>
+												<xs:group ref="HeatingChannelInfo" />
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Conveyors">
+					<xs:complexType>
+						<xs:sequence minOccurs="0"
+									 maxOccurs="unbounded">
+							<xs:element name="Conveyor">
+								<xs:complexType>
+									<xs:group ref="ConveyorChannelInfo" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Rails">
+					<xs:complexType>
+						<xs:sequence minOccurs="0"
+									 maxOccurs="unbounded">
+							<xs:element name="Rail">
+								<xs:complexType>
+									<xs:group ref="RailInfo" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:group name="HeatingChannelInfo">
+		<xs:sequence>
+			<xs:element name="SP"
+					    type="xs:float" />
+			<xs:element name="PV"
+					    type="xs:float" />
+			<xs:element name="OP"
+					    type="xs:float" />
+			<xs:element ref="AlarmLevel" />
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="ConveyorChannelInfo">
+		<xs:sequence>
+			<xs:element name="Number"
+					    type="xs:string" />
+			<xs:element name="SP"
+					    type="xs:float" />
+			<xs:element name="PV"
+					    type="xs:float" />
+			<xs:element ref="AlarmLevel" />
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="RailInfo">
+		<xs:sequence>
+			<xs:element name="Number"
+					    type="xs:string" />
+			<xs:element name="SP"
+					    type="xs:float" />
+			<xs:element name="PV"
+					    type="xs:float" />
+		</xs:sequence>
+	</xs:group>
+	<xs:element name="AlarmLevel">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="HiDeviation"
+						    type="xs:float" />
+				<xs:element name="HiWarning"
+						    type="xs:float" />
+				<xs:element name="LowWarning"
+						    type="xs:float" />
+				<xs:element name="LowDeviation"
+						    type="xs:float" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
