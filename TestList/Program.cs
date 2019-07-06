@@ -55,6 +55,50 @@ namespace TestList
 
             Console.WriteLine("\nExists(EndsWithSaurus): {0}",
                 dinosaurs.Exists(EndsWithSaurus));
+
+
+            List<string> testStringWithLF = new List<string>();
+            testStringWithLF.Add("SS");
+            testStringWithLF.Add("YY");
+            testStringWithLF.Add("XX");
+            bool isFirstAddr = true;
+            string retBuffer = "";
+            testStringWithLF.ForEach(addr =>
+            {
+                if (isFirstAddr) retBuffer += addr;
+                else retBuffer += "\n" + addr;
+                isFirstAddr = false;
+            });
+
+            Console.WriteLine(retBuffer);
+
+            Dictionary<string, int> testDic = new Dictionary<string, int>();
+            testDic.Add("SS", 1);
+            testDic.Add("YY", 2);
+            testDic.Add("XX", 3);
+            List<int> lstData = new List<int>();
+            isFirstAddr = true;
+            retBuffer = "";
+            testDic.All(kv =>
+            {
+                if (isFirstAddr) retBuffer += kv.Key;
+                else retBuffer += "\n" + kv.Key;
+                isFirstAddr = false;
+
+                lstData.Add(kv.Value);
+
+                return true;
+            });
+
+            //if (testDic.Remove("SS")) Console.WriteLine("Remove Success");
+            //else Console.WriteLine("Remove Fail");
+            //if (testDic.Remove("QWER")) Console.WriteLine("Remove Success");
+            //else Console.WriteLine("Remove Fail");
+
+            Console.WriteLine($"{testDic.FirstOrDefault(p => p.Value == 3).Key}");
+            Console.WriteLine($"{testDic.FirstOrDefault(p => p.Value == 4).Key}");
+
+            Console.ReadLine();
         }
 
         // Search predicate returns true if a string ends in "saurus".

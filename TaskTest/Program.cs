@@ -22,50 +22,58 @@ namespace TaskTest
 
         private void runnnn()
         {
-            bool doTerminate = false;
-            List<Task<string>> ts = new List<Task<string>>();
+            List<Task> ts = new List<Task>();
+            var tokenSource2 = new CancellationTokenSource();
+            CancellationToken ct = tokenSource2.Token;
 
-                for (int i = 0; i < 10; i++)
-                {
-                    Task<string> t = Task.Run(() =>
-                    {
-                        string ret = "AAA";
-                        for (int s = 0; s < i; s++)
-                        {
-                            if (!doTerminate) Thread.Sleep(1000);
-                            else break;
-                            
-                            ret = "R" + s;
-                        }
-
-                        return ret;
-                    });
-                    ts.Add(t);
-                }
-
-                TimeSpan timeout = TimeSpan.FromMilliseconds(5000);
-
-
-                //Task.WaitAll(ts.ToArray());
-                if (!Task.WaitAll(ts.ToArray(), timeout))
-                {
-                    Console.WriteLine("The timeout interval elapsed.");
-                    doTerminate = true;
-                    //Environment.Exit(99);
-                }
-                else Console.WriteLine("Success All");
-           
-            try
+            Task t1 = Task.Run(() =>
             {
-                for (int i = 0; i < 10; i++)
+                for (int s = 0; s < 10; s++)
                 {
-                    Console.WriteLine(i + ": " + (string.IsNullOrWhiteSpace(ts[i].Result) ? "A" : ts[i].Result));
+                    Thread.Sleep(1000);
+                    Console.WriteLine($"T1, {s}");
+
+                    ct.ThrowIfCancellationRequested();
                 }
-            }
-            catch (AggregateException ex)
+
+            }, ct);
+
+            Task t2 = Task.Run(() =>
             {
-                Console.WriteLine("TEST22222>> " + ex);
+                for (int s = 0; s < 10; s++)
+                {
+                    Thread.Sleep(1000);
+                    Console.WriteLine($"T2, {s}");
+
+                    ct.ThrowIfCancellationRequested();
+                }
+
+            }, ct);
+
+            ts.Add(t1);
+            ts.Add(t2);
+
+
+            if (!Task.WaitAll(ts.ToArray(), 2000))
+            {
+                tokenSource2.Cancel();
+                Console.WriteLine("The timeout interval elapsed.");
+                //doTerminate = true;
+                //Environment.Exit(99);
             }
+            else Console.WriteLine("Success All");
+
+            ////try
+            ////{
+            ////    for (int i = 0; i < 10; i++)
+            ////    {
+            ////        Console.WriteLine(i + ": " + (string.IsNullOrWhiteSpace(ts[i].Result) ? "A" : ts[i].Result));
+            ////    }
+            ////}
+            ////catch (AggregateException ex)
+            ////{
+            ////    Console.WriteLine("TEST22222>> " + ex);
+            ////}
 
 
             Console.WriteLine("End Test");

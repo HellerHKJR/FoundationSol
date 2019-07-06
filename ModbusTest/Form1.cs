@@ -8,9 +8,11 @@ using System.Text;
 using System.IO.Ports;
 using System.Windows.Forms;
 using Modbus.Device;
+using Modbus.Utility;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Threading;
+
 
 namespace ModbusTest
 {
@@ -54,7 +56,7 @@ namespace ModbusTest
             NetworkIsOk = ConnectModbusSerial();
 
             tcpConnectionTimer = new System.Windows.Forms.Timer();
-            tcpConnectionTimer.Interval = 100;
+            tcpConnectionTimer.Interval = 500;
             tcpConnectionTimer.Tick += TcpConnectionTimer_Tick;
             tcpConnectionTimer.Enabled = true;
         }
@@ -69,48 +71,105 @@ namespace ModbusTest
                 {
                     #region Master to Slave
 
+                    Console.WriteLine("Try to Read somethings : {0}", DateTime.Now.ToString("HH:mm:ss.fff"));
+
                     //Thread thread = new Thread(new ThreadStart(SomethingFunction));
                     //thread.Start()
                     byte stationID = 1;
 
-                    //System.Threading.Tasks.Task<bool[]> retReadInput = master.ReadInputsAsync(stationID, 0, 2);
-                    //Thread.Sleep(300);
-                    //System.Threading.Tasks.Task<bool[]> retReadCoils = master.ReadCoilsAsync(stationID, 2, 1);
-                    //Thread.Sleep(300);
-                    System.Threading.Tasks.Task<ushort[]> retReadHoldingRegisters = master.ReadHoldingRegistersAsync(stationID, 6, 6);
-                    //Thread.Sleep(300);
-                    //System.Threading.Tasks.Task<ushort[]> retReadInputRegisters = master.ReadInputRegistersAsync(stationID, 0, 2);
-                    //Thread.Sleep(300);
-                    //System.Threading.Tasks.Task<ushort[]> retReadWriteMultipleRegisters = master.ReadWriteMultipleRegistersAsync(stationID, 0, 2, 0, new ushort[] { 1, 2 });
-                    //Thread.Sleep(300);
-                    
+                    ////System.Threading.Tasks.Task<bool[]> retReadInput = master.ReadInputsAsync(stationID, 0, 2);
+                    ////System.Threading.Tasks.Task<bool[]> retReadCoils = master.ReadCoilsAsync(stationID, 2, 1);
+                    ////System.Threading.Tasks.Task<ushort[]> retReadHoldingRegisters = master.ReadHoldingRegistersAsync(stationID, 6, 6);
+
+                    //////
+                    //삼성전기 쿤산 GIMAC 의 읽는 부분
+                    ////// 30001 ~ 30026, 실제 사용부분 : 30001(Avg Vol, 2byte), 30003(Avg Cur, 2byte),  30023(Factor, 2 byte), 30025 (Total Active Power, 2 byte)
+                    System.Threading.Tasks.Task<ushort[]> retReadInputRegisters = master.ReadInputRegistersAsync(stationID, 0, 26);
+                    // InputRegistersAsync
+
+                    ////System.Threading.Tasks.Task<ushort[]> retReadWriteMultipleRegisters = master.ReadWriteMultipleRegistersAsync(stationID, 0, 2, 0, new ushort[] { 1, 2 });
+
                     //System.Threading.Tasks.Task reWriteSingleCoil = master.WriteMultipleCoilsAsync(stationID, 2, new bool[] { false });
                     //master.WriteMultipleCoilsAsync
 
                     try
                     {
-                        //System.Threading.Tasks.Task.WaitAll(retReadInput, retReadCoils, retReadHoldingRegisters, retReadInputRegisters, retReadInputRegisters, retReadWriteMultipleRegisters);
+                        //bool waitSuccess = System.Threading.Tasks.Task.WaitAll(new System.Threading.Tasks.Task[] { retReadInput, retReadCoils, retReadHoldingRegisters, retReadInputRegisters, retReadWriteMultipleRegisters }, 3000);
+                        
+                        bool waitSuccess = retReadInputRegisters.Wait(200);
+                        
 
-                        System.Threading.Tasks.Task.WaitAll(retReadHoldingRegisters);
-                        ushort[] ret = retReadHoldingRegisters.Result;
-                        //bool[] ret = retReadInput.Result;
+                        if (!waitSuccess)
+                        {
+                            Console.WriteLine("Timeout to Read somethings");
+
+                            return;
+                        }
+
+                        //System.Threading.Tasks.Task.WaitAll(retReadHoldingRegisters);
+                        ////bool[] ret1 = retReadInput.Result;
+                        ////for (int s = 0; s < ret1.Length; s++)
+                        ////{
+                        ////    Console.WriteLine("ReadInput {0}:{1}", s, ret1[s]);
+                        ////}
+
+                        ////bool[] ret2 = retReadCoils.Result;
+                        ////for (int s = 0; s < ret2.Length; s++)
+                        ////{
+                        ////    Console.WriteLine("ReadCoils {0}:{1}", s, ret2[s]);
+                        ////}
+
+                        ////ushort[] ret3 = retReadHoldingRegisters.Result;
+                        ////for (int s = 0; s < ret3.Length; s++)
+                        ////{
+                        ////    Console.WriteLine("ReadHoldingRegisters {0}:{1:X2}", s, ret3[s]);
+                        ////}
+
+                        ushort[] ret4 = retReadInputRegisters.Result;
+                        if(ret4.Length == 26)
+                        {
+                            //AVG Volt
+                            float value = ModbusUtility.GetSingle(ret4[1], ret4[0]);
+                            txtVolt.Text = value.ToString("F3");                            
+                            Console.WriteLine("Voltage {0}", value);
+                            //AVG Curr
+                            value = ModbusUtility.GetSingle(ret4[3], ret4[2]);
+                            txtCurr.Text = value.ToString("F3");
+                            Console.WriteLine("Current {0}", value);
+                            //AVG Fact
+                            value = ModbusUtility.GetSingle(ret4[23], ret4[22]);
+                            txtFact.Text = value.ToString("F3");
+                            Console.WriteLine("Power Factor {0}", value);
+                            //AVG Powe
+                            value = ModbusUtility.GetSingle(ret4[25], ret4[24]);
+                            txtPowe.Text = value.ToString("F3");
+                            Console.WriteLine("Total Active Power {0}", value);
+                        }
+                        ////for (int s = 0; s < ret4.Length; s++)
+                        ////{
+                        ////    Console.WriteLine("ReadInputRegisters {0}:{1:X2}", s, ret4[s]);
+                        ////}
+
+                        ////ushort[] ret5 = retReadWriteMultipleRegisters.Result;
+                        ////for (int s = 0; s < ret5.Length; s++)
+                        ////{
+                        ////    Console.WriteLine("ReadWriteMultipleRegisters {0}:{1:X2}", s, ret5[s]);
+                        ////}
 
                         //if (ret[0]) lblDI0.BackColor = Color.Blue;
                         //else lblDI0.BackColor = Color.Red;
 
-                        for( int s = 0; s < ret.Length; s++)
-                        {
-                            Console.WriteLine("{0}:{1:X2}", s, ret[s]);
-                        }
-
                     }
                     catch (AggregateException aex)
                     {
-                        Console.WriteLine("Timeout to Read somethings");
+                        Console.WriteLine("Exception to Read somethings : {0}", DateTime.Now.ToString("HH:mm:ss.fff"));
                         Console.WriteLine(aex);
 
                     }
-                    catch (Exception) { }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
 
                     #endregion
                 }
@@ -173,7 +232,7 @@ namespace ModbusTest
 
                     master = ModbusIpMaster.CreateIp(tcpClient);
                     master.Transport.Retries = 0;
-                    master.Transport.ReadTimeout = 1500;
+                    master.Transport.ReadTimeout = 2000;
                     Console.WriteLine("Connected to ModbusTCP");
                     return true;
                 }
@@ -193,7 +252,7 @@ namespace ModbusTest
             if (serialPort != null) serialPort.Close();
             serialPort = new SerialPort();
             serialPort.PortName = "COM6";
-            serialPort.BaudRate = 4800;
+            serialPort.BaudRate = 38400;
             serialPort.DataBits = 8;
             serialPort.Handshake = Handshake.None;
             serialPort.Parity = Parity.None;
@@ -205,7 +264,7 @@ namespace ModbusTest
                 
                 master = ModbusSerialMaster.CreateRtu(serialPort);
                 master.Transport.Retries = 0;
-                master.Transport.ReadTimeout = 500;
+                master.Transport.ReadTimeout = 300;
                 Console.WriteLine("Connected to ModbusRTU");                
             }
             catch (Exception ex)
@@ -214,6 +273,14 @@ namespace ModbusTest
             }
 
             return serialPort.IsOpen;
+        }
+
+        private void MainDispose()
+        {
+            if( serialPort != null && serialPort.IsOpen )
+            {
+                serialPort.Close();
+            }
         }
 
         private bool CheckInternet()
