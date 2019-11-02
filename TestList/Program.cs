@@ -5,12 +5,20 @@ using System.Text;
 
 namespace TestList
 {
+    public class TempObjectView
+    {
+        public object ObjectValue { get; set; }
+    }
     class Program
     {
         static void Main(string[] args)
         {
-            List<string> dinosaurs = new List<string>();
+            TempObjectView tt1 = new TempObjectView();
+            TempObjectView tt2 = new TempObjectView();
+            TempObjectView tt3 = new TempObjectView();
 
+            List<string> dinosaurs = new List<string>();
+            
             dinosaurs.Add("Compsognathus");
             dinosaurs.Add("Amargasaurus");
             dinosaurs.Add("Oviraptor");
@@ -20,11 +28,70 @@ namespace TestList
             dinosaurs.Add("Gallimimus");
             dinosaurs.Add("Triceratops");
 
+            tt1.ObjectValue = dinosaurs;
+            dinosaurs = new List<string>();
+
+            dinosaurs.Add("Compsognathus");
+            dinosaurs.Add("Amargasaurus");
+            tt2.ObjectValue = dinosaurs;
+            dinosaurs = new List<string>();
+
+            dinosaurs.Add("Dilophosaurus");
+            dinosaurs.Add("Gallimimus");
+            dinosaurs.Add("Triceratops");
+            tt3.ObjectValue = dinosaurs;
+
+
+
+            foreach ( string d in dinosaurs)
+            {
+                if (d.Equals("Velociraptor"))
+                    break;
+
+                Console.WriteLine(d);
+            }
+            Console.WriteLine("===========================");
+            Console.WriteLine();
+
+            dinosaurs.ForEach(d =>
+            {
+                if (d.Equals("Velociraptor"))
+                    return;
+
+                Console.WriteLine(d);
+            });
+
+            Console.WriteLine("===========================");
             Console.WriteLine();
             foreach (string dinosaur in dinosaurs)
             {
                 Console.WriteLine(dinosaur);
             }
+
+            try
+            {
+                var gongyong = dinosaurs.Count(d => d == "ABCD");
+
+                
+                Console.WriteLine(gongyong);
+            }
+            catch
+            {
+                Console.WriteLine("no gongyong");
+            }
+
+
+
+            int idxFind = dinosaurs.FindIndex(l => l.Equals("Oviraptor"));
+            dinosaurs.RemoveRange(0, idxFind + 1);
+
+            Console.WriteLine();
+            foreach (string dinosaur in dinosaurs)
+            {
+                Console.WriteLine(dinosaur);
+            }
+
+
 
             Console.WriteLine("\nTrueForAll(EndsWithSaurus): {0}",
                 dinosaurs.TrueForAll(EndsWithSaurus));

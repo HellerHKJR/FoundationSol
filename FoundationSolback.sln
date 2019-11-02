@@ -149,6 +149,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IniReadWrite", "IniReadWrit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLTest", "XMLTest\XMLTest.csproj", "{DDB378A6-8E46-4951-BA42-632CACC916C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITest", "UITest\UITest.csproj", "{E36064DB-8AE7-407E-9256-F315471FFFFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndexFind", "IndexFind\IndexFind.csproj", "{E788DAB6-0ED7-4060-995C-1685DD0B8503}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculateRealStepNumber", "CalculateRealStepNumber\CalculateRealStepNumber.csproj", "{430DEB43-994E-47A2-88F5-34A10E4C3FCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegularExpressTest", "RegularExpressTest\RegularExpressTest.csproj", "{06558A0A-9695-47CC-86D5-A4C35023C52A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClientSample", "WebClientSample\WebClientSample.csproj", "{460F9EC5-4770-4104-BE28-2DA76A88D769}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeingMessageBoxStyle", "WindowsFormsApp1\MakeingMessageBoxStyle.csproj", "{DDAFD150-9662-44A5-87AC-B5F82D6510A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -449,6 +461,30 @@ Global
 		{DDB378A6-8E46-4951-BA42-632CACC916C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDB378A6-8E46-4951-BA42-632CACC916C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDB378A6-8E46-4951-BA42-632CACC916C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E36064DB-8AE7-407E-9256-F315471FFFFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E36064DB-8AE7-407E-9256-F315471FFFFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E36064DB-8AE7-407E-9256-F315471FFFFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E36064DB-8AE7-407E-9256-F315471FFFFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E788DAB6-0ED7-4060-995C-1685DD0B8503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E788DAB6-0ED7-4060-995C-1685DD0B8503}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E788DAB6-0ED7-4060-995C-1685DD0B8503}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E788DAB6-0ED7-4060-995C-1685DD0B8503}.Release|Any CPU.Build.0 = Release|Any CPU
+		{430DEB43-994E-47A2-88F5-34A10E4C3FCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{430DEB43-994E-47A2-88F5-34A10E4C3FCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{430DEB43-994E-47A2-88F5-34A10E4C3FCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{430DEB43-994E-47A2-88F5-34A10E4C3FCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06558A0A-9695-47CC-86D5-A4C35023C52A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06558A0A-9695-47CC-86D5-A4C35023C52A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06558A0A-9695-47CC-86D5-A4C35023C52A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06558A0A-9695-47CC-86D5-A4C35023C52A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{460F9EC5-4770-4104-BE28-2DA76A88D769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{460F9EC5-4770-4104-BE28-2DA76A88D769}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{460F9EC5-4770-4104-BE28-2DA76A88D769}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{460F9EC5-4770-4104-BE28-2DA76A88D769}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDAFD150-9662-44A5-87AC-B5F82D6510A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDAFD150-9662-44A5-87AC-B5F82D6510A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDAFD150-9662-44A5-87AC-B5F82D6510A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDAFD150-9662-44A5-87AC-B5F82D6510A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

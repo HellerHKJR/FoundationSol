@@ -25,12 +25,15 @@ namespace XMLTest
         {
             sb.Clear();
             XmlWriterSettings settings = new XmlWriterSettings();
-            settings.CheckCharacters = false;
-            settings.ConformanceLevel = ConformanceLevel.Document;
-            settings.CloseOutput = true;
-            settings.Encoding = Encoding.UTF8;
-
+            settings.Indent = true;
             settings.OmitXmlDeclaration = omitXmlDeclaration;
+            settings.NewLineOnAttributes = false;
+            settings.ConformanceLevel = ConformanceLevel.Auto;
+
+            //settings.CheckCharacters = false;
+            //settings.CloseOutput = true;
+            //settings.Encoding = Encoding.UTF8;
+
 
             using (XmlWriter xmlWriter = XmlWriter.Create(sb, settings))
             {
@@ -39,15 +42,26 @@ namespace XMLTest
                 xmlWriter.WriteStartElement("Hermes");
                 xmlWriter.WriteAttributeString("TimeStamp", DateTime.Now.ToString("yyyy-MM-ddThh:mm:ss.s"));
 
-                xmlWriter.WriteStartElement("BoardAvailable");
-                xmlWriter.WriteAttributeString("BoardId", "1");
-                xmlWriter.WriteAttributeString("BoardIdCreatedBy", "2");
-                xmlWriter.WriteAttributeString("FailedBoard", "3");
-                xmlWriter.WriteAttributeString("ProductTypeId", "4");
-                xmlWriter.WriteAttributeString("FlippedBoard", "5");
+                //xmlWriter.WriteStartElement("Test1");
+                //xmlWriter.WriteStartElement("BoardAvailable");
+                //xmlWriter.WriteAttributeString("BoardId", "1");
+                //xmlWriter.WriteAttributeString("BoardIdCreatedBy", "2");
+                //xmlWriter.WriteAttributeString("FailedBoard", "3");
+                //xmlWriter.WriteAttributeString("ProductTypeId", "4");
+                //xmlWriter.WriteAttributeString("FlippedBoard", "5");
+                //xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteStartElement("ServiceDescription");
+                xmlWriter.WriteAttributeString("MachineId", "가나다");
+                xmlWriter.WriteAttributeString("LaneId", "123");
+                xmlWriter.WriteAttributeString("Version", "123");
+                xmlWriter.WriteStartElement("SupportedFeatures");
+                xmlWriter.WriteEndElement();
                 xmlWriter.WriteEndElement();
 
-
+                xmlWriter.WriteEndElement();
+                xmlWriter.WriteEndDocument();
+                xmlWriter.Flush();
             }
             
         }

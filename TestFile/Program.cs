@@ -11,31 +11,37 @@ namespace TestFile
     {
         static void Main(string[] args)
         {
-            string strFullPath = @"C:\Oven\Recipe Files\";
+            //string strFullPath = @"C:\Oven\Recipe Files\";
 
-            DirectoryInfo dir = new DirectoryInfo(strFullPath);
+            //DirectoryInfo dir = new DirectoryInfo(strFullPath);
 
-            FileInfo[] files = dir.GetFiles("*.JOB");
-            foreach( FileInfo file in files)
-            {
-                //file.IsReadOnly = false;
+            //FileInfo[] files = dir.GetFiles("*.JOB");
+            //foreach( FileInfo file in files)
+            //{
+            //    //file.IsReadOnly = false;
 
-                byte[] rtn = File.ReadAllBytes(file.FullName);
-                string rtn2 = ByteArrayToString(rtn);
+            //    byte[] rtn = File.ReadAllBytes(file.FullName);
+            //    string rtn2 = ByteArrayToString(rtn);
 
-                byte[] rtn3 = StringToByteArray(rtn2);
+            //    byte[] rtn3 = StringToByteArray(rtn2);
 
-                for( int i = 0; i < rtn.Length; i++ )
-                {
-                    if (rtn[i] != rtn3[i]) Console.WriteLine(i + "BAD");
-                }
-            }
+            //    for( int i = 0; i < rtn.Length; i++ )
+            //    {
+            //        if (rtn[i] != rtn3[i]) Console.WriteLine(i + "BAD");
+            //    }
+            //}
 
 
-            FileInfo fi = new FileInfo(@"C:\SSSS.txt");
-            fi.Delete();
+            //FileInfo fi = new FileInfo(@"C:\SSSS.txt");
+            //fi.Delete();
 
-            Console.ReadLine();
+            //Console.ReadLine();
+
+            FileInfo fi = new FileInfo("test");
+
+            double kkkk = 1.234d;
+            string test = kkkk.ToString("F1");
+
         }
 
         public static string ByteArrayToString(byte[] ba)

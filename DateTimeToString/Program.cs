@@ -14,8 +14,14 @@ namespace DateTimeToString
             //float te = 123.1234567f;
             //Console.WriteLine("{0:0.00}", te);
 
+            DateTime date = new DateTime(2015, 8, 9, 13, 31, 17);
+            Console.WriteLine(date.ToString("yyyyMMddHHmmss"));
+
+            int k1 = 1;
+            string path = $"{k1:D2}&";
+
             TimeSpan tt = TimeSpan.FromSeconds(5431);
-            Console.WriteLine("{0}", tt.ToString(@"mm\:ss"));
+            Console.WriteLine("{0}", tt.ToString(@"hh\:mm\:ss"));
             //Console.WriteLine("{0}:{1}", Math.Truncate(tt.TotalMinutes).ToString("F0"), tt.Seconds);
 
             //string[] pass = { "level1", "level2", "level3" };
@@ -60,9 +66,9 @@ namespace DateTimeToString
 
             Console.WriteLine(DateTime.Now.ToString("HH:mm:ss"));
             Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+            Console.WriteLine(DateTime.Now.ToString("yyyyMMddHHmmssff"));
 
-
-            for( int i = 1; i < 20; i++ )
+            for ( int i = 1; i < 20; i++ )
             {
                 int ss = (int)Math.Round(i / 2F, MidpointRounding.AwayFromZero);
                 Console.WriteLine($"{i} = {ss}");
@@ -107,7 +113,7 @@ namespace DateTimeToString
             }
 
 
-
+            Console.WriteLine((DateTime.Now - DateTime.Now.AddMinutes(-1)).ToString(@"hh\:mm\:ss"));
 
             DateTime dt = DateTime.Now;
             string sFileName = string.Format($"{dt.Month:00}-{dt.Day:00}.csv");
